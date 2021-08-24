@@ -11,11 +11,11 @@ router
         db('urls')
             .select('*')
             .then((row) => {
-                res.status(200).send({ added: true, row: new_row })
+                res.status(200).send(row)
             })
             .catch((err) => {
                 console.log(err)
-                res.send({ added: false })
+                res.send([])
             })
     })
     .post((req, res) => {
