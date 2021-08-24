@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../database')
-const moment = require('moment')
 const { v4 } = require('uuid')
 
 router.route('/:short_url').get((req, res) => {
