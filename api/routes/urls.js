@@ -10,6 +10,7 @@ router
     .get((req, res) => {
         db('urls')
             .select('*')
+            .orderBy('accessed', 'desc')
             .then((row) => {
                 res.status(200).send(row)
             })
