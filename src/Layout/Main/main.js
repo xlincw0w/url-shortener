@@ -35,26 +35,29 @@ const Main = () => {
                                         <CircularProgress color='inherit' />
                                     </Backdrop>
                                 )
+                            } else {
+                                return (
+                                    <Switch>
+                                        <Route path='/overview'>
+                                            <ShortHeader />
+                                            <Overview />
+                                        </Route>
+                                        <Route exact path='/login'>
+                                            <Login />
+                                        </Route>
+                                        <Route path='/:short_url'>
+                                            <Resolver />
+                                        </Route>
+                                        <Route path='/'>
+                                            <Header />
+                                            <ShortenInput />
+                                        </Route>
+                                    </Switch>
+                                )
                             }
                         }}
                     </FirebaseAuthConsumer>
 
-                    <Switch>
-                        <Route path='/overview'>
-                            <ShortHeader />
-                            <Overview />
-                        </Route>
-                        <Route exact path='/login'>
-                            <Login />
-                        </Route>
-                        <Route path='/:short_url'>
-                            <Resolver />
-                        </Route>
-                        <Route path='/'>
-                            <Header />
-                            <ShortenInput />
-                        </Route>
-                    </Switch>
                     <ToastContainer
                         position='top-right'
                         autoClose={5000}

@@ -12,6 +12,7 @@ import dayjs from 'dayjs'
 import { constants } from '../../constants'
 
 import axios from 'axios'
+import { FirebaseAuthConsumer } from '@react-firebase/auth'
 
 const useStyles = makeStyles({
     table: {
@@ -35,35 +36,46 @@ export default function Overview() {
     }, [])
 
     return (
-        <div className='lg:px-10 xl:px-32'>
-            <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label='simple table'>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Resolved URL</TableCell>
-                            <TableCell align='right'>Shortened URL</TableCell>
-                            <TableCell align='right'>Creation date</TableCell>
-                            <TableCell align='right'>Times requested</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {urls.map((row) => {
-                            return (
-                                <TableRow key={row.id_url}>
-                                    <TableCell component='th' scope='row'>
-                                        <a href={row.long_url} target='_blank'>
-                                            {row.long_url}
-                                        </a>
-                                    </TableCell>
-                                    <TableCell align='right'>{row.short_url}</TableCell>
-                                    <TableCell align='right'>{dayjs(row.createdat).format('HH:mm DD-MM-YYYY')}</TableCell>
-                                    <TableCell align='right'>{row.accessed}</TableCell>
-                                </TableRow>
-                            )
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </div>
+        <FirebaseAuthConsumer>
+            {({ isSignedIn, user, providerId }) => {
+                console.log(isSignedIn)
+                if (isSignedIn) {
+                    return (
+                        <div className='lg:px-10 xl:px-32'>
+                            <TableContainer component={Paper}>
+                                <Table className={classes.table} aria-label='simple table'>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Resolved URL</TableCell>
+                                            <TableCell align='right'>Shortened URL</TableCell>
+                                            <TableCell align='right'>Creation date</TableCell>
+                                            <TableCell align='right'>Times requested</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {urls.map((row) => {
+                                            return (
+                                                <TableRow key={row.id_url}>
+                                                    <TableCell component='th' scope='row'>
+                                                        <a href={row.long_url} target='_blank'>
+                                                            {row.long_url}
+                                                        </a>
+                                                    </TableCell>
+                                                    <TableCell align='right'>{row.short_url}</TableCell>
+                                                    <TableCell align='right'>{dayjs(row.createdat).format('HH:mm DD-MM-YYYY')}</TableCell>
+                                                    <TableCell align='right'>{row.accessed}</TableCell>
+                                                </TableRow>
+                                            )
+                                        })}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </div>
+                    )
+                } else {
+                    return <></>
+                }
+            }}
+        </FirebaseAuthConsumer>
     )
 }

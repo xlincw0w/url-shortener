@@ -7,11 +7,18 @@ import { FirebaseAuthConsumer } from '@react-firebase/auth'
 import firebase from 'firebase/app'
 
 const ShortHeader = () => {
+    const history = useHistory()
     return (
         <>
             <div className='grid grid-cols-2 lg:grid-cols-3 w-full h-32'>
                 <div className='flex justify-start lg:justify-end'>
-                    <img className='w-40 h-28' src={yzrIcon} />
+                    <img
+                        onClick={() => {
+                            history.push('/')
+                        }}
+                        className='w-40 h-28 cursor-pointer'
+                        src={yzrIcon}
+                    />
                 </div>
 
                 <div className='hidden lg:block'>
@@ -29,7 +36,6 @@ const ShortHeader = () => {
                                 <div className='flex justify-end lg:justify-center mt-8 mr-4'>
                                     <p
                                         onClick={() => {
-                                            firebase.auth().signOut()
                                             history.push('/overview')
                                         }}
                                         className='inline-block text-gray-500 cursor-pointer hover:text-gray-700 duration-300 mx-2'>
@@ -72,7 +78,13 @@ const Header = () => {
         <>
             <div className='grid grid-cols-2 lg:grid-cols-3 w-full h-32'>
                 <div className='flex justify-start lg:justify-end'>
-                    <img className='w-40 h-28' src={yzrIcon} />
+                    <img
+                        onClick={() => {
+                            history.push('/')
+                        }}
+                        className='w-40 h-28 cursor-pointer'
+                        src={yzrIcon}
+                    />
                 </div>
 
                 <div className='hidden lg:block'>
@@ -90,7 +102,6 @@ const Header = () => {
                                 <div className='flex justify-end lg:justify-center mt-8 mr-4'>
                                     <p
                                         onClick={() => {
-                                            firebase.auth().signOut()
                                             history.push('/overview')
                                         }}
                                         className='inline-block text-gray-500 cursor-pointer hover:text-gray-700 duration-300 mx-2'>
