@@ -1,5 +1,6 @@
 export const constants = {
-    url: window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://mikemagolnick.herokuapp.com',
+    // url: window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://mikemagolnick.herokuapp.com',
+    url: 'https://mikemagolnick.herokuapp.com',
     // regex
     username_rg: /^[A-Za-z]+[A-Za-z0-9 ]*$/,
     alph_rg: /^[A-Za-z]*$/,

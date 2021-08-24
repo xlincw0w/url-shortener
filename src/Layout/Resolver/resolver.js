@@ -9,6 +9,8 @@ import { toast } from 'react-toastify'
 const Resolver = () => {
     const params = useParams()
 
+    console.log('Resolving')
+
     useEffect(() => {
         axios
             .get(constants.url + '/resolve/' + params.short_url)

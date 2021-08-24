@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../database')
-const moment = require('moment')
+const dayjs = require('dayjs')
 const { v4 } = require('uuid')
 const shortId = require('shortid')
 
@@ -25,7 +25,7 @@ router
             id_url: v4(),
             long_url,
             short_url: shortId.generate(),
-            createdat: moment(),
+            createdat: dayjs(),
         }
 
         db('urls')
