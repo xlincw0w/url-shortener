@@ -11,7 +11,10 @@ router.route('/:short_url').get((req, res) => {
         .select('*')
         .where({ short_url })
         .then((row) => {
-            db('urls').increment('accessed', 1).where({ short_url })
+            db('urls')
+                .increment('accessed', 1)
+                .where({ short_url })
+                .then(() => console.log('Resolved : ' + short_url))
             res.status(200).send({ row: row[0] })
         })
         .catch((err) => {
